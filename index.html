@@ -131,11 +131,13 @@
     .stat-label { font-family:var(--font-ui); font-size:.65rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--text-muted); margin-top:.2rem; }
 
     /* ════════════════ MARQUEE ════════════════ */
-    .marquee-wrap { background:var(--green); overflow:hidden; padding:.9rem 0; white-space:nowrap; }
+    .marquee-wrap { background:#F4F4F4; overflow:hidden; padding:1.1rem 0; white-space:nowrap; border-top:1px solid rgba(0,0,0,.07); border-bottom:1px solid rgba(0,0,0,.07); }
+    .marquee-label { text-align:center; font-family:var(--font-ui); font-size:.6rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--text-muted); padding-bottom:.6rem; }
     .marquee-track { display:inline-flex; align-items:center; animation:marquee 32s linear infinite; }
     .marquee-item { display:inline-flex; align-items:center; padding:0 2.5rem; gap:2.5rem; }
-    .marquee-item img { height:28px; width:auto; display:block; filter:brightness(0) invert(1); opacity:.9; }
-    .marquee-dot  { width:5px; height:5px; background:rgba(0,0,0,.3); border-radius:50%; flex-shrink:0; }
+    .marquee-item img { height:28px; width:auto; display:block; filter:grayscale(1); opacity:.65; transition:filter .25s ease,opacity .25s ease; }
+    .marquee-item img:hover { filter:none; opacity:1; }
+    .marquee-dot  { width:4px; height:4px; background:rgba(0,0,0,.2); border-radius:50%; flex-shrink:0; }
 
     /* ════════════════ PROBLEM ════════════════ */
     #problem { background:var(--bg-2); }
@@ -503,6 +505,7 @@
 
 <!-- MARQUEE -->
 <div class="marquee-wrap">
+  <div class="marquee-label">CONNECTS WITH</div>
   <div class="marquee-track">
     <!-- set 1 -->
     <span class="marquee-item"><img src="partner%20logo/gohighlevel.png" alt="GoHighLevel"><span class="marquee-dot"></span><img src="partner%20logo/facebook.png" alt="Facebook"><span class="marquee-dot"></span><img src="partner%20logo/instagram.jpg" alt="Instagram"><span class="marquee-dot"></span><img src="partner%20logo/whatsapp.png" alt="WhatsApp"><span class="marquee-dot"></span><img src="partner%20logo/google%20business%20profile.jpg" alt="Google Business Profile"><span class="marquee-dot"></span><img src="partner%20logo/google%20calendar.png" alt="Google Calendar"><span class="marquee-dot"></span><img src="partner%20logo/hubspot.jpg" alt="HubSpot"><span class="marquee-dot"></span><img src="partner%20logo/linkedin.png" alt="LinkedIn"><span class="marquee-dot"></span><img src="partner%20logo/pinterest.png" alt="Pinterest"><span class="marquee-dot"></span><img src="partner%20logo/youtube.png" alt="YouTube"></span>
@@ -645,31 +648,6 @@
       </div>
 
       <!-- EVA — FLAGSHIP, full width -->
-      <div class="agent-card card-eva reveal" style="--card-color:var(--eva-color);--card-bg:rgba(0,191,165,.08);--card-badge-bg:rgba(0,191,165,.1);--card-badge-border:rgba(0,191,165,.3);">
-        <div class="card-eva-inner">
-          <div class="card-img-wrap">
-            <img src="brand/EVA.png" alt="Eva — Personal Assistant &amp; AI Brain">
-            <div class="card-color-bar"></div>
-          </div>
-          <div class="card-eva-right">
-            <div class="card-body">
-              <span class="card-badge" style="background:rgba(0,191,165,.15);border-color:rgba(0,191,165,.4);color:var(--eva-color);">⭐ Flagship · The AI Brain</span>
-              <div class="card-name">Eva</div>
-              <div class="card-role">Personal Assistant</div>
-              <p class="card-desc">Eva IS the AI brain. She learns everything about your business and coordinates the entire team. The longer you run the infrastructure, the smarter Eva gets — she's not just an assistant, she's your company's collective intelligence.</p>
-            </div>
-            <div class="card-eva-tasks card-tasks" style="justify-content:flex-start;">
-              <div class="card-task" style="--card-color:var(--eva-color);">Manages inbox &amp; calendar 24/7</div>
-              <div class="card-task" style="--card-color:var(--eva-color);">Coordinates all other agents</div>
-              <div class="card-task" style="--card-color:var(--eva-color);">Holds your full business memory</div>
-              <div class="card-task" style="--card-color:var(--eva-color);">Gets smarter every single day</div>
-              <div class="card-task" style="--card-color:var(--eva-color);">The core of the AI infrastructure</div>
-              <div class="card-task" style="--card-color:var(--eva-color);">Provides daily intelligence briefings</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- PENNY -->
       <div class="agent-card reveal" style="--card-color:var(--penny-color);--card-bg:rgba(255,214,0,.10);--card-badge-bg:rgba(255,214,0,.1);--card-badge-border:rgba(255,214,0,.3);">
         <div class="card-img-wrap" style="height:300px;">
@@ -723,6 +701,32 @@
             <div class="card-task">Automated sales conversations</div>
             <div class="card-task">Proposal &amp; quote generation</div>
             <div class="card-task">Pipeline management &amp; forecasting</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EVA -->
+      <div class="agent-card card-eva reveal" style="--card-color:var(--eva-color);--card-bg:rgba(0,191,165,.08);--card-badge-bg:rgba(0,191,165,.1);--card-badge-border:rgba(0,191,165,.3);">
+        <div class="card-eva-inner">
+          <div class="card-img-wrap">
+            <img src="brand/EVA.png" alt="Eva — Personal Assistant &amp; AI Brain">
+            <div class="card-color-bar"></div>
+          </div>
+          <div class="card-eva-right">
+            <div class="card-body">
+              <span class="card-badge" style="background:rgba(0,191,165,.15);border-color:rgba(0,191,165,.4);color:var(--eva-color);">⭐ Flagship · The AI Brain</span>
+              <div class="card-name">Eva</div>
+              <div class="card-role">Personal Assistant</div>
+              <p class="card-desc">Eva IS the AI brain. She learns everything about your business and coordinates the entire team. The longer you run the infrastructure, the smarter Eva gets — she's not just an assistant, she's your company's collective intelligence.</p>
+            </div>
+            <div class="card-eva-tasks card-tasks" style="justify-content:flex-start;">
+              <div class="card-task" style="--card-color:var(--eva-color);">Manages inbox &amp; calendar 24/7</div>
+              <div class="card-task" style="--card-color:var(--eva-color);">Coordinates all other agents</div>
+              <div class="card-task" style="--card-color:var(--eva-color);">Holds your full business memory</div>
+              <div class="card-task" style="--card-color:var(--eva-color);">Gets smarter every single day</div>
+              <div class="card-task" style="--card-color:var(--eva-color);">The core of the AI infrastructure</div>
+              <div class="card-task" style="--card-color:var(--eva-color);">Provides daily intelligence briefings</div>
+            </div>
           </div>
         </div>
       </div>
