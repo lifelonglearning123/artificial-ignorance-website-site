@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Franchise Opportunity — Artificial Ignorance</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
+
+  :root {
+    --black: #0A0A0A;
+    --white: #FAFAF8;
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-pale: #F5E9CC;
+    --mid: #1A1A1A;
+    --border: rgba(201,168,76,0.3);
+    --text-muted: #888;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── Cover ── */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 40px;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(ellipse 80% 60% at 50% 50%, #1c1500 0%, #0A0A0A 70%);
+  }
+  .cover::before {
+    content:'';
+    position:absolute; inset:0;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 59px,
+      rgba(201,168,76,0.04) 60px
+    ),
+    repeating-linear-gradient(
+      180deg,
+      transparent 0,
+      transparent 59px,
+      rgba(201,168,76,0.04) 60px
+    );
+  }
+  .cover-badge {
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 20px;
+    border-radius: 2px;
+    margin-bottom: 48px;
+    position:relative;
+  }
+  .cover h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(42px, 8vw, 88px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -2px;
+    position:relative;
+    max-width: 900px;
+  }
+  .cover h1 span { color: var(--gold); }
+  .cover-sub {
+    font-size: 18px;
+    color: var(--text-muted);
+    margin-top: 24px;
+    max-width: 560px;
+    position:relative;
+    font-weight: 300;
+  }
+  .cover-url {
+    margin-top: 60px;
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-transform: uppercase;
+    position:relative;
+  }
+  .cover-divider {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    margin: 40px auto;
+    position:relative;
+  }
+  .stat-row {
+    display: flex;
+    gap: 64px;
+    position:relative;
+    margin-top: 16px;
+  }
+  .stat-item { text-align:center; }
+  .stat-item .num {
+    font-family: 'Syne', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--gold);
+    display:block;
+  }
+  .stat-item .label {
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  /* ── Sections ── */
+  section {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 80px 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  section:last-child { border-bottom: none; }
+
+  .section-tag {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 24px;
+  }
+  h2 span { color: var(--gold); }
+  h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--white);
+  }
+  p { color: #C0BDB5; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+  strong { color: var(--white); font-weight:500; }
+
+  /* ── Opportunity block ── */
+  .big-stat {
+    background: linear-gradient(135deg, #1A1400 0%, #0f0f0f 100%);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 48px;
+    text-align: center;
+    margin: 40px 0;
+  }
+  .big-stat .pct {
+    font-family: 'Syne', sans-serif;
+    font-size: 120px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--gold);
+    letter-spacing: -4px;
+  }
+  .big-stat .pct-sub {
+    font-size: 20px;
+    color: var(--text-muted);
+    margin-top: 8px;
+    font-weight: 300;
+  }
+  .big-stat .pct-sub strong { color: var(--white); }
+
+  /* ── Cards ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 40px 0;
+  }
+  @media(max-width:600px){ .card-grid { grid-template-columns:1fr; } }
+  .card {
+    background: #111;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    padding: 28px;
+    position:relative;
+    overflow:hidden;
+    transition: border-color 0.3s;
+  }
+  .card:hover { border-color: var(--border); }
+  .card-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .card-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+    display:block;
+  }
+
+  /* ── Revenue model ── */
+  .revenue-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 32px 0;
+  }
+  .revenue-table th {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .revenue-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: #C0BDB5;
+    font-size: 14px;
+  }
+  .revenue-table tr:last-child td { border-bottom: none; }
+  .revenue-table .highlight { color: var(--gold); font-weight: 600; font-family:'Syne',sans-serif; }
+  .revenue-table .big { font-size: 18px; color: var(--white); font-weight: 500; }
+
+  /* ── Chart containers ── */
+  .chart-wrap {
+    background: #0e0e0e;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 4px;
+    padding: 32px;
+    margin: 32px 0;
+    position:relative;
+  }
+  .chart-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+  canvas { max-width:100%; }
+
+  /* ── Two col ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin: 32px 0;
+  }
+  @media(max-width:640px){ .two-col { grid-template-columns:1fr; } }
+
+  /* ── What you get list ── */
+  .deliverable-list {
+    list-style: none;
+    margin: 24px 0;
+  }
+  .deliverable-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: #C0BDB5;
+    font-size: 14px;
+  }
+  .deliverable-list li:last-child { border-bottom: none; }
+  .check {
+    width: 20px;
+    height: 20px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    margin-top:2px;
+    font-size: 10px;
+    color: #000;
+    font-weight: 700;
+  }
+
+  /* ── Freeze banner ── */
+  .freeze-banner {
+    background: linear-gradient(135deg, var(--gold) 0%, #a07830 100%);
+    color: #000;
+    border-radius: 4px;
+    padding: 40px 48px;
+    margin: 40px 0;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  .freeze-icon { font-size: 48px; flex-shrink:0; }
+  .freeze-banner h3 { color:#000; font-size: 22px; margin-bottom: 8px; }
+  .freeze-banner p { color: rgba(0,0,0,0.7); margin:0; }
+
+  /* ── CTA ── */
+  .cta-section {
+    text-align: center;
+    background: radial-gradient(ellipse 80% 60% at 50% 50%, #1c1500 0%, #0A0A0A 70%);
+    padding: 100px 40px;
+  }
+  .cta-section h2 { font-size: clamp(32px,5vw,56px); max-width:700px; margin:0 auto 24px; }
+  .cta-btn {
+    display: inline-block;
+    background: var(--gold);
+    color: #000;
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 18px 48px;
+    border-radius: 2px;
+    text-decoration: none;
+    margin-top: 32px;
+    transition: background 0.2s;
+  }
+  .cta-btn:hover { background: var(--gold-light); }
+  .cta-url { color: var(--text-muted); font-size: 13px; margin-top: 20px; letter-spacing: 1px; }
+
+  /* ── Progress bar ── */
+  .bar-row { margin: 12px 0; }
+  .bar-label { display:flex; justify-content:space-between; font-size:13px; color:#C0BDB5; margin-bottom:6px; }
+  .bar-track { height: 6px; background: rgba(255,255,255,0.08); border-radius:3px; overflow:hidden; }
+  .bar-fill { height:100%; background: linear-gradient(90deg, var(--gold), var(--gold-light)); border-radius:3px; }
+
+  /* ── Timeline ── */
+  .timeline { position:relative; padding-left: 32px; margin: 32px 0; }
+  .timeline::before { content:''; position:absolute; left:7px; top:4px; bottom:4px; width:1px; background: var(--border); }
+  .tl-item { position:relative; margin-bottom: 28px; }
+  .tl-item::before { content:''; position:absolute; left:-28px; top:6px; width:10px; height:10px; border-radius:50%; background: var(--gold); border: 2px solid var(--black); }
+  .tl-item h4 { font-family:'Syne',sans-serif; font-size:14px; font-weight:700; color:var(--white); margin-bottom:4px; }
+  .tl-item p { font-size:13px; color:var(--text-muted); margin:0; }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-muted);
+    font-size: 12px;
+    letter-spacing: 1px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .gold-line { width: 40px; height: 2px; background: var(--gold); margin: 0 0 32px 0; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-badge">Franchise Opportunity · Confidential</div>
+  <h1>Own The<br><span>AI Revolution</span><br>Before It Owns You.</h1>
+  <p class="cover-sub">A ready-to-launch AI & Automation business — fully branded, fully supported, zero technical knowledge required.</p>
+  <div class="cover-divider"></div>
+  <div class="stat-row">
+    <div class="stat-item">
+      <span class="num">1%</span>
+      <span class="label">UK AI adoption</span>
+    </div>
+    <div class="stat-item">
+      <span class="num">£13.8B</span>
+      <span class="label">UK AI market 2025</span>
+    </div>
+    <div class="stat-item">
+      <span class="num">70%</span>
+      <span class="label">Revenue you keep</span>
+    </div>
+  </div>
+  <p class="cover-url">artificialignorance.io</p>
+</div>
+
+<!-- THE OPPORTUNITY -->
+<section>
+  <p class="section-tag">01 — Market Context</p>
+  <h2>The Opportunity Is<br><span>Hiding In Plain Sight</span></h2>
+  <div class="gold-line"></div>
+  <p>The UK is sitting on the largest untapped commercial opportunity since the internet. Businesses everywhere are trying to understand AI — how it works, how to deploy it, and how to make it pay. They need someone they can trust to guide them.</p>
+  <p>That guide could be you. And we'll give you everything you need to play that role — under your own brand, in your own market.</p>
+
+  <div class="big-stat">
+    <div class="pct">99%</div>
+    <div class="pct-sub">of UK businesses have <strong>not yet adopted AI</strong> in their workplace</div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <h3>The Problem</h3>
+      <p>SMEs across the UK know AI is important. But they don't know where to start, who to trust, or how to justify the cost. The skills gap is enormous — and growing daily.</p>
+    </div>
+    <div>
+      <h3>Your Solution</h3>
+      <p>You arrive as the local AI expert — armed with world-class tools, proven systems, and the full technical backing of Artificial Ignorance behind you. You close deals. We deliver.</p>
+    </div>
+  </div>
+
+  <div class="chart-wrap">
+    <div class="chart-title">UK Business AI Adoption — Current State (2025)</div>
+    <canvas id="adoptionChart" height="220"></canvas>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section>
+  <p class="section-tag">02 — The Package</p>
+  <h2>Everything You Need.<br><span>Day One.</span></h2>
+  <div class="gold-line"></div>
+  <p>We hand you a complete, revenue-generating business infrastructure — built, tested, and ready to sell. Your name on the door. Our engine under the bonnet.</p>
+
+  <ul class="deliverable-list">
+    <li><span class="check">✓</span><div><strong>Your fully branded identity</strong> — Sales decks, proposals, email templates and social assets all in your company name. Clients see you. We're the engine room.</div></li>
+    <li><span class="check">✓</span><div><strong>Done-for-you sales funnels</strong> — Landing pages, lead capture sequences and email nurture flows built and live from day one.</div></li>
+    <li><span class="check">✓</span><div><strong>WhatsApp Business automations</strong> — Automated follow-ups, appointment booking, lead qualification and client onboarding bots.</div></li>
+    <li><span class="check">✓</span><div><strong>CRM & pipeline management</strong> — Full visibility of your prospects, deals and revenue — set up and configured for your business.</div></li>
+    <li><span class="check">✓</span><div><strong>AI & automation products to sell</strong> — A curated portfolio of in-demand services with proven pricing, positioning and case studies.</div></li>
+    <li><span class="check">✓</span><div><strong>Ongoing technical delivery</strong> — We build and deploy for your clients. You sell. We fulfil. You get paid.</div></li>
+    <li><span class="check">✓</span><div><strong>Dedicated sales support</strong> — Pitch training, objection handling scripts, live deal support and quarterly strategy reviews.</div></li>
+    <li><span class="check">✓</span><div><strong>Client success management</strong> — Retention, upsell strategies and renewal support to maximise your recurring revenue.</div></li>
+  </ul>
+</section>
+
+<!-- REVENUE MODEL -->
+<section>
+  <p class="section-tag">03 — The Numbers</p>
+  <h2>Simple, Transparent<br><span>Revenue Split</span></h2>
+  <div class="gold-line"></div>
+  <p>No hidden fees. No complex royalty structures. You sell, revenue comes in, it splits. That's it. Every pound you generate is shared fairly — and we're incentivised to help you succeed because we only earn when you do.</p>
+
+  <table class="revenue-table">
+    <thead>
+      <tr>
+        <th>You Sell</th>
+        <th>You Retain (70%)</th>
+        <th>Platform Fee (30%)</th>
+        <th>What That Covers</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>£1,000/mo client</td>
+        <td class="highlight">£700/mo</td>
+        <td>£300/mo</td>
+        <td>Full technical delivery + support</td>
+      </tr>
+      <tr>
+        <td>£2,500/mo client</td>
+        <td class="highlight">£1,750/mo</td>
+        <td>£750/mo</td>
+        <td>Full technical delivery + support</td>
+      </tr>
+      <tr>
+        <td>£5,000/mo client</td>
+        <td class="highlight">£3,500/mo</td>
+        <td>£1,500/mo</td>
+        <td>Full technical delivery + support</td>
+      </tr>
+      <tr>
+        <td>5 clients avg £2k/mo</td>
+        <td class="highlight big">£7,000/mo</td>
+        <td>£3,000/mo</td>
+        <td>Full stack, all 5 accounts</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="chart-wrap">
+    <div class="chart-title">Projected Monthly Revenue — Your Take-Home (70%)</div>
+    <canvas id="revenueChart" height="240"></canvas>
+  </div>
+</section>
+
+<!-- PROJECTIONS -->
+<section>
+  <p class="section-tag">04 — Projections</p>
+  <h2>What Does<br><span>Growth Look Like?</span></h2>
+  <div class="gold-line"></div>
+  <p>These projections are based on a conservative ramp-up — 1 client in month one, adding 1–2 clients every 6–8 weeks as your pipeline develops. Many franchisees exceed this in year one.</p>
+
+  <div class="chart-wrap">
+    <div class="chart-title">12-Month Revenue Projection — Your Share (Conservative)</div>
+    <canvas id="growthChart" height="260"></canvas>
+  </div>
+
+  <div class="two-col" style="margin-top:40px;">
+    <div class="chart-wrap" style="margin:0;">
+      <div class="chart-title">Year 1 Revenue Breakdown</div>
+      <canvas id="pieChart" height="200"></canvas>
+    </div>
+    <div>
+      <h3>Realistic Milestones</h3>
+      <div class="bar-row">
+        <div class="bar-label"><span>Month 3: 2 clients</span><span>£2,800/mo</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:20%"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label"><span>Month 6: 4 clients</span><span>£5,600/mo</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:40%"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label"><span>Month 9: 6 clients</span><span>£8,400/mo</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:60%"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label"><span>Month 12: 8 clients</span><span>£11,200/mo</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:80%"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label"><span>Year 2: 15 clients</span><span>£21,000/mo</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+      </div>
+      <p style="font-size:12px; color:var(--text-muted); margin-top:16px;">Based on avg. client value of £2,000/mo recurring. Actual results will vary.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FREEZE PERIOD -->
+<section>
+  <p class="section-tag">05 — Our Commitment to You</p>
+  <h2>We Freeze Our Share<br><span>Until You're In Profit</span></h2>
+  <div class="gold-line"></div>
+
+  <div class="freeze-banner">
+    <div class="freeze-icon">🔒</div>
+    <div>
+      <h3>3-Month Revenue Share Freeze</h3>
+      <p>For the first 3 months — or until your sales revenue has covered your setup fee (whichever comes first) — Artificial Ignorance waives its 30% revenue share entirely. You keep 100% of every pound earned while you find your feet.</p>
+    </div>
+  </div>
+
+  <p>This isn't a small print thing. It's a statement of confidence: we believe in this model, and we want you to recover your investment before we take a penny. That alignment is everything.</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <h4>Setup &amp; Onboarding (Week 1–2)</h4>
+      <p>Your brand assets, sales funnels, automations and CRM are built and handed over. You receive full onboarding training.</p>
+    </div>
+    <div class="tl-item">
+      <h4>Freeze Period Begins (Month 1–3)</h4>
+      <p>You keep 100% of all revenue. Artificial Ignorance delivers all technical work. Zero revenue share taken.</p>
+    </div>
+    <div class="tl-item">
+      <h4>Setup Fee Recovered</h4>
+      <p>Once your sales have matched your setup investment, the standard 70/30 split activates. You're already in profit.</p>
+    </div>
+    <div class="tl-item">
+      <h4>Full Revenue Partnership</h4>
+      <p>The 70/30 model runs indefinitely. As your client base grows, so does your income — with full support at every stage.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY NOW -->
+<section>
+  <p class="section-tag">06 — Why Now</p>
+  <h2>The Window Won't<br><span>Stay Open Forever</span></h2>
+  <div class="gold-line"></div>
+
+  <div class="card-grid">
+    <div class="card">
+      <span class="card-icon">⚡</span>
+      <div class="card-num">01</div>
+      <h3>First-Mover Advantage</h3>
+      <p>With only 1% of UK businesses using AI, the early adopter landscape is wide open. The franchisees who move now will own their territory before competitors arrive.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">📈</span>
+      <div class="card-num">02</div>
+      <h3>Recurring Revenue</h3>
+      <p>AI implementations aren't one-off sales. Clients pay monthly for support, optimisation and expansion. Every new client adds permanent recurring income.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🤝</span>
+      <div class="card-num">03</div>
+      <h3>No Technical Skills Needed</h3>
+      <p>You don't need to understand AI to sell it. You need to understand business problems. We handle everything technical, so you focus on relationships and sales.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🏗️</span>
+      <div class="card-num">04</div>
+      <h3>Built Infrastructure</h3>
+      <p>Years of development, testing and refinement go into your setup from day one. You skip the painful build phase and launch with a proven, working system.</p>
+    </div>
+  </div>
+
+  <div class="chart-wrap">
+    <div class="chart-title">UK AI Market Growth Forecast — £ Billions</div>
+    <canvas id="marketChart" height="220"></canvas>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <p class="section-tag" style="color:var(--gold);">Ready to Begin?</p>
+  <h2>Book Your Discovery<br><span>Call Today</span></h2>
+  <p style="color:var(--text-muted); max-width:480px; margin:0 auto;">Places are limited. We work closely with each franchisee to ensure quality — and that means we're selective. If this resonates, don't wait.</p>
+  <a href="https://www.artificialignorance.io" class="cta-btn">Apply Now → artificialignorance.io</a>
+  <p class="cta-url" style="margin-top:24px;">www.artificialignorance.io</p>
+</div>
+
+<footer>
+  © 2025 Artificial Ignorance Ltd · artificialignorance.io · Franchise Partnership Division<br>
+  Projections are illustrative. Revenue figures depend on individual sales performance and market conditions.
+</footer>
+
+<script>
+const gold = '#C9A84C';
+const goldLight = '#E8C97A';
+const gridColor = 'rgba(255,255,255,0.06)';
+const textColor = '#888';
+
+Chart.defaults.color = textColor;
+Chart.defaults.font.family = "'DM Sans', sans-serif";
+
+// ── Adoption pie ──
+new Chart(document.getElementById('adoptionChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Not yet adopted AI (99%)', 'AI-enabled businesses (1%)'],
+    datasets: [{
+      data: [99, 1],
+      backgroundColor: ['rgba(201,168,76,0.15)', gold],
+      borderColor: ['rgba(201,168,76,0.4)', gold],
+      borderWidth: 1,
+      hoverOffset: 8
+    }]
+  },
+  options: {
+    cutout: '72%',
+    plugins: {
+      legend: { position: 'bottom', labels: { padding: 20, font: { size: 13 } } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.label}` } }
+    }
+  }
+});
+
+// ── Revenue split bar ──
+new Chart(document.getElementById('revenueChart'), {
+  type: 'bar',
+  data: {
+    labels: ['1 client\n£1k/mo', '1 client\n£2.5k/mo', '1 client\n£5k/mo', '5 clients\navg £2k/mo', '10 clients\navg £2k/mo'],
+    datasets: [
+      {
+        label: 'Your revenue (70%)',
+        data: [700, 1750, 3500, 7000, 14000],
+        backgroundColor: gold,
+        borderRadius: 3,
+      },
+      {
+        label: 'Platform fee (30%)',
+        data: [300, 750, 1500, 3000, 6000],
+        backgroundColor: 'rgba(255,255,255,0.08)',
+        borderRadius: 3,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'bottom', labels: { padding: 16, font:{ size:12 } } },
+      tooltip: { callbacks: { label: ctx => ` £${ctx.raw.toLocaleString()}/mo` } }
+    },
+    scales: {
+      x: { stacked: true, grid: { color: gridColor }, ticks: { font:{ size:11 } } },
+      y: { stacked: true, grid: { color: gridColor }, ticks: { callback: v => `£${v.toLocaleString()}` } }
+    }
+  }
+});
+
+// ── 12 month growth ──
+const months = ['M1','M2','M3','M4','M5','M6','M7','M8','M9','M10','M11','M12'];
+const revenue = [1400, 1400, 2800, 2800, 4200, 5600, 5600, 7000, 8400, 8400, 9800, 11200];
+
+new Chart(document.getElementById('growthChart'), {
+  type: 'line',
+  data: {
+    labels: months,
+    datasets: [{
+      label: 'Your Monthly Revenue (£)',
+      data: revenue,
+      borderColor: gold,
+      backgroundColor: 'rgba(201,168,76,0.08)',
+      fill: true,
+      tension: 0.4,
+      pointBackgroundColor: gold,
+      pointRadius: 5,
+      pointHoverRadius: 8,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ` £${ctx.raw.toLocaleString()}/mo` } }
+    },
+    scales: {
+      x: { grid: { color: gridColor } },
+      y: { grid: { color: gridColor }, ticks: { callback: v => `£${v.toLocaleString()}` } }
+    }
+  }
+});
+
+// ── Year 1 pie ──
+new Chart(document.getElementById('pieChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Your take (70%)', 'Platform fee (30%)'],
+    datasets: [{
+      data: [70, 30],
+      backgroundColor: [gold, 'rgba(255,255,255,0.1)'],
+      borderColor: [gold, 'rgba(255,255,255,0.1)'],
+      borderWidth: 1,
+    }]
+  },
+  options: {
+    cutout: '65%',
+    plugins: {
+      legend: { position: 'bottom', labels: { padding: 16, font:{ size:12 } } }
+    }
+  }
+});
+
+// ── Market growth ──
+new Chart(document.getElementById('marketChart'), {
+  type: 'bar',
+  data: {
+    labels: ['2022','2023','2024','2025','2026','2027','2028','2030'],
+    datasets: [{
+      label: 'UK AI Market Size (£B)',
+      data: [4.2, 6.1, 9.3, 13.8, 19.4, 26.1, 34.5, 55.0],
+      backgroundColor: (ctx) => {
+        const idx = ctx.dataIndex;
+        return idx >= 4 ? 'rgba(201,168,76,0.25)' : gold;
+      },
+      borderColor: gold,
+      borderWidth: 1,
+      borderRadius: 3,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ` £${ctx.raw}B` } }
+    },
+    scales: {
+      x: { grid: { color: gridColor } },
+      y: { grid: { color: gridColor }, ticks: { callback: v => `£${v}B` } }
+    }
+  }
+});
+</script>
+</body>
+</html>
